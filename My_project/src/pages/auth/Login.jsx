@@ -1,41 +1,41 @@
 import React, { useState } from 'react';
-import Layout from '../../components/layout/Layout';
+import { Link } from 'react-router-dom';
+import './Auth.css';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your login logic here
-    console.log('Login submitted:', username, password);
+    // In a real application, you'd send this data to your backend
+    console.log('Login:', { email, password });
   };
 
   return (
-    <Layout>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+    <div className="auth-container">
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit} className="auth-form">
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
         <button type="submit">Login</button>
       </form>
-    </Layout>
+      <p>
+        Don't have an account? <Link to="/register">Register</Link>
+      </p>
+    </div>
   );
 }
 

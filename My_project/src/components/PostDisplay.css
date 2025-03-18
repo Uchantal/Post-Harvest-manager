@@ -1,0 +1,27 @@
+/* In src/components/PostDisplay.css */
+.post-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .post {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .post-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .post-details {
+    flex-grow: 1;
+  }

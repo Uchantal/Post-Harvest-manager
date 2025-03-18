@@ -1,123 +1,62 @@
 import React, { useState } from 'react';
-import Layout from '../../components/layout/Layout';
+import { Link } from 'react-router-dom';
+import './Auth.css'; // Assuming you have an Auth.css file
 
 function Registration() {
-  const [identityNumber, setIdentityNumber] = useState('');
-  const [placeOfBirth, setPlaceOfBirth] = useState('');
-  const [registrationType, setRegistrationType] = useState('farmer'); // Default to farmer
-  const [address, setAddress] = useState('');
-  const [profileIcon, setProfileIcon] = useState(null);
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState('buyer'); // Default role
+  const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
+    if (!role) {
+      setError('Please select a role.');
       return;
     }
-    console.log('Registration submitted:', {
-      identityNumber,
-      placeOfBirth,
-      registrationType,
-      address,
-      profileIcon,
-      username,
-      password,
-      confirmPassword,
-    });
-    // Add your registration logic here
-  };
-
-  const handleProfileIconChange = (e) => {
-    setProfileIcon(e.target.files[0]);
+    // In a real application, you'd send this data to your backend
+    console.log('Registration:', { username, email, password, role });
   };
 
   return (
-    <Layout>
-      <h1>Registration</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="identityNumber">Identity Card Number (16 Digits):</label>
-          <input
-            type="text"
-            id="identityNumber"
-            value={identityNumber}
-            onChange={(e) => setIdentityNumber(e.target.value)}
-            maxLength="16"
-          />
-        </div>
-        <div>
-          <label htmlFor="placeOfBirth">Place of Birth:</label>
-          <input
-            type="text"
-            id="placeOfBirth"
-            value={placeOfBirth}
-            onChange={(e) => setPlaceOfBirth(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="registrationType">Registration Type:</label>
-          <select
-            id="registrationType"
-            value={registrationType}
-            onChange={(e) => setRegistrationType(e.target.value)}
-          >
-            <option value="farmer">Farmer</option>
-            <option value="transport">Transport</option>
-            <option value="storage">Storage</option>
-            <option value="buyer">Buyer</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="address">Address:</label>
-          <input
-            type="text"
-            id="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="profileIcon">Profile Icon:</label>
-          <input
-            type="file"
-            id="profileIcon"
-            accept="image/*"
-            onChange={handleProfileIconChange}
-          />
-        </div>
+    <div className="auth-container">
+      <h2>Register</h2>
+      <form onSubmit={handleSubmit} className="auth-form">
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <select value={role} onChange={(e) => setRole(e.target.value)}>
+          <option value="buyer">Buyer</option>
+          <option value="farmer">Farmer</option>
+          <option value="transporter">Transporter</option>
+          <option value="storageProvider">Storage Provider</option>
+        </select>
+        {error && <p className="error-message">{error}</p>}
         <button type="submit">Register</button>
       </form>
-    </Layout>
+      <p>
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
+    </div>
   );
 }
 

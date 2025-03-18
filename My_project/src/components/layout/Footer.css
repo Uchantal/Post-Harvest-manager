@@ -1,0 +1,48 @@
+.footer {
+    background-color: #1a237e; /* Dark blue background */
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-top p {
+    margin-bottom: 10px;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .social-icon {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-links {
+    display: flex;
+  }
+  
+  .footer-link {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .trustpilot-link {
+    color: white;
+    text-decoration: none;
+  }

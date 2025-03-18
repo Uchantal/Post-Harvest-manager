@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css'; // Import the CSS file
+import { Link } from 'react-router-dom'; // Correct import
+import './Navbar.css';
 
 function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -26,12 +26,42 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <span className="navbar-logo">Your Logo</span>
+        <span className="navbar-logo">
+          <img
+            src="/images/Screenshot from 2025-03-17 22-40-58.png"
+            alt="Agriculture Products"
+            className="service-icon"
+          />
+        </span>
         <ul className="navbar-links">
-          <li><Link to="/" className="navbar-link">Home</Link></li>
-          <li><Link to="/services" className="navbar-link">Services</Link></li>
-          <li><Link to="/about" className="navbar-link">About</Link></li>
-          <li><Link to="/contact" className="navbar-link">Contact Us</Link></li>
+          <li>
+            <Link to="/" className="navbar-link">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/services" className="navbar-link">
+              Services
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" className="navbar-link">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" className="navbar-link">
+              Contact Us
+            </Link>
+          </li>
+          <li>
+          <li className="navbar-item">
+            <Link to="/blog" className="navbar-link">
+              Blog
+            </Link>
+          </li>
+            
+          </li>
         </ul>
       </div>
       <div className="navbar-right">
@@ -40,8 +70,12 @@ function Navbar() {
         </button>
         {isDropdownOpen && (
           <div ref={dropdownRef} className="navbar-dropdown">
-            <Link to="/login" className="dropdown-link">Login</Link>
-            <Link to="/register" className="dropdown-link">Register</Link>
+            <Link to="/login" className="dropdown-link">
+              Login
+            </Link>
+            <Link to="/register" className="dropdown-link">
+              Register
+            </Link>
           </div>
         )}
       </div>
